@@ -1,4 +1,4 @@
-# CS1: Lab 5
+# CS1: Lab 9
 
 ## Setup
 1. Update the contents of *ID.txt* with your identifier (school email **without @school.edu**).
