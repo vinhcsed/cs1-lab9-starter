@@ -7,93 +7,107 @@
 ## How to Run Your Program
 * [**WINDOWS**]
    - In VSCode, press the play button in the top right corner (it should appear when you open a `.cpp` file). Your program should compile and run.
-   - Alternatively, open a terminal. Type `make.bat` and press return. Your program should compile and run.
+   - Alternatively, open a terminal. Type `.\make.bat` and press return. Your program should compile and run.
 * [**MAC/LINUX**]
    - Open a Terminal. Type `make` and press return. Your program should compile and run.
 
 ## Assignment Specification
-### The Elements Game
+### Jumbled Bag
 * Implement this program in `main.cpp`.
-* This program will be a variation on the classic game Rock, Paper, Scissors.
-* There are four choices: Air, Water, Earth, or Fire
-* The elements interact as follows:
-   - Air *gusts* Earth (Air wins)
-   - Water *extinguishes* Fire (Water wins)
-   - Earth *absorbs* Water (Earth wins)
-   - Fire *burns* Air (Fire wins)
-   - For all other interactions, the match ends in a draw
-* *Continuously* display a menu of options and prompt the user to make a selection.
-   - `A` for Air, `W` for Water, `E` for Earth, `F` for Fire
-   - The user should be continuously prompted until they make a valid selection
-* After the user has made their selection, the program should **randomly** select another element.
-   - Randomness can be accomplished using `rand()` and `srand()` from the `<cstdlib>` library in combination with `time()` from the `<ctime>` library
-* Output a message to the terminal determining if the user has won or lost the match.
-* Lastly, after the winner is determined, the user should select whether or not to play again.
-   - `Y` to play again, or any other key to quit
+* This program will simulate a bag containing capital letters A-Z.
+* When the program begins, the user should be prompted for the *size* of the bag.
+   - The program should **dynamically allocate** an array to represent the bag; the array has *size*+1 elements
+   - The last element of the array should be initialized to an asterisk `*` to represent the maximum capacity of the bag (no items should be added at or beyond this element)
+   - All other elements should be initialized to underscores `_` to represent empty spots
+* The program should display three menu options: 1) Add to Bag, 2) Remove from Bag, 3) Quit.
+   - If the user makes an invalid menu selection, they should be continuously prompted until they make a valid selection
+* When adding to the bag, the user should be prompted for a character. If the bag has space, the character should be “added” to the bag. Otherwise, the message `The bag is full!` should be displayed. Afterwards, the current contents of the bag should be printed to the terminal.
+   - If the user enters an invalid character, they should be continuously prompted until they enter a valid one
+* When removing from the bag, the user should be prompted for a character. If the character is not present in the bag, a message should be displayed in the format `{char} is not in the bag`. Otherwise, the earliest occurence of the character should be removed; Afterwards, the current contents of the bag should be printed to the terminal.
+   - If the user enters an invalid character, they should be continuously prompted until they enter a valid one
+* If the user chooses to quit, the program should immediately end.
 
-### Function Requirements
-This starter code includes function prototypes to help you get started. Each of these functions must be defined and used in the final program. Additional helper functions should be defined if necessary.
-* `char userChoice()`
-  - Continuously prompts the user for a selection until a valid choice is made, then returns that character choice
-* `char computerChoice()`
-  - Generates a random choice (A, W, E, or F) and returns it
-* `void determineWinner(char, char)`
-  - Determines the winner of a match between two element choices and displays it
-* `bool playAgain()`
-  - Prompts the user to ask if they want to play again (returns `true`) or not (returns `false`)
+### Other Requirements
+* The bag array must be dynamically allocated to the specified size
+* Aside from what is provided in the starter code, the index operator `[]` is not allowed in this program.
+* Your program logic must be organized into functions; you will be graded on code cleanliness and design.
 
 #### Example
 ```
-ELEMENTS: AIR (A), WATER (W), EARTH (E), FIRE (F)
-Select your element: G    
-Invalid selection, try again: X
-Invalid selection, try again: O
-Invalid selection, try again: A
-You chose AIR. Your opponent chose WATER. Nothing happens.
-Draw!
-Would you like to play again? (Y for yes, other key to quit): Y
+How big is the bag?: 3
 
-ELEMENTS: AIR (A), WATER (W), EARTH (E), FIRE (F)
-Select your element: A
-You chose AIR. Your opponent chose WATER. Nothing happens.
-Draw!
-Would you like to play again? (Y for yes, other key to quit): Y
+1) Add to Bag
+2) Remove from Bag
+3) Quit
+Make a selection: 4
+Invalid selection, please try again.
+Make a selection: 1
+Enter a character: g
+Invalid character, please try again.
+Enter a character: A
+Added {A} to the bag.
+[ A ]
 
-ELEMENTS: AIR (A), WATER (W), EARTH (E), FIRE (F)
-Select your element: A
-You chose AIR. Your opponent chose FIRE. FIRE burns AIR.
-You lose!
-Would you like to play again? (Y for yes, other key to quit): Y
+1) Add to Bag
+2) Remove from Bag
+3) Quit
+Make a selection: 1
+Enter a character: A
+Added {A} to the bag.
+[ A A ]
 
-ELEMENTS: AIR (A), WATER (W), EARTH (E), FIRE (F)
-Select your element: W
-You chose WATER. Your opponent chose AIR. Nothing happens.
-Draw!
-Would you like to play again? (Y for yes, other key to quit): Y
+1) Add to Bag
+2) Remove from Bag
+3) Quit
+Make a selection: 1
+Enter a character: B
+Added {B} to the bag.
+[ A A B ]
 
-ELEMENTS: AIR (A), WATER (W), EARTH (E), FIRE (F)
-Select your element: W
-You chose WATER. Your opponent chose WATER. Nothing happens.
-Draw!
-Would you like to play again? (Y for yes, other key to quit): Y
+1) Add to Bag
+2) Remove from Bag
+3) Quit
+Make a selection: 1
+Enter a character: B
+The bag is full!
+[ A A B ]
 
-ELEMENTS: AIR (A), WATER (W), EARTH (E), FIRE (F)
-Select your element: E
-You chose EARTH. Your opponent chose WATER. EARTH absorbs WATER.
-You win!
-Would you like to play again? (Y for yes, other key to quit): Y
+1) Add to Bag
+2) Remove from Bag
+3) Quit
+Make a selection: 2 
+Enter a character: C
+{C} is not in the bag.
+[ A A B ]
 
-ELEMENTS: AIR (A), WATER (W), EARTH (E), FIRE (F)
-Select your element: F
-You chose FIRE. Your opponent chose WATER. WATER extinguishes FIRE.
-You lose!
-Would you like to play again? (Y for yes, other key to quit): Y
+1) Add to Bag
+2) Remove from Bag
+3) Quit
+Make a selection: 2
+Enter a character: A
+Removed {A} from the bag.
+[ A B ]
 
-ELEMENTS: AIR (A), WATER (W), EARTH (E), FIRE (F)
-Select your element: F
-You chose FIRE. Your opponent chose AIR. FIRE burns AIR.
-You win!
-Would you like to play again? (Y for yes, other key to quit): Q
+1) Add to Bag
+2) Remove from Bag
+3) Quit
+Make a selection: 1
+Enter a character: C
+Added {C} to the bag.
+[ A B C ]
+
+1) Add to Bag
+2) Remove from Bag
+3) Quit
+Make a selection: 2
+Enter a character: B
+Removed {B} from the bag.
+[ A C ]
+
+1) Add to Bag
+2) Remove from Bag
+3) Quit
+Make a selection: 3
 ```
 
 ## Submission
