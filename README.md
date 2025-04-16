@@ -28,7 +28,7 @@
 * If the user chooses to quit, the program should immediately end.
 
 ### Other Requirements
-* The bag array must be dynamically allocated to the specified size
+* The bag array must be dynamically allocated to the specified size.
 * Aside from what is provided in the starter code, **the index operator `[]` is not allowed in this program**. Array operations should only use pointers.
 * Your program logic must be organized into functions; you will be graded on code cleanliness and design.
 
