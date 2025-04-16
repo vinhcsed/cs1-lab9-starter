@@ -29,7 +29,7 @@
 
 ### Other Requirements
 * The bag array must be dynamically allocated to the specified size
-* Aside from what is provided in the starter code, **the index operator `[]` is not allowed in this program**. All array operations should be accomplished using pointers.
+* Aside from what is provided in the starter code, **the index operator `[]` is not allowed in this program**. Array operations should use only pointers.
 * Your program logic must be organized into functions; you will be graded on code cleanliness and design.
 
 #### Example
